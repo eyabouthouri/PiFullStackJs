@@ -1,4 +1,6 @@
 var createError = require('http-errors');
+var http=require("http")
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -50,16 +52,5 @@ var server=http.createServer(app)
 server.listen(3000,()=>{
   console.log("server strated");
 })
-const socket=http.createServer(app);
-var io=require("socket.io")(server);
 
-io.on("connection",(Socket)=>{
-  console.log("User connected");
-  Socket.emit("msg","A new user is connected");
-  Socket.on("msg",(data)=>
-  {io.emit("msg",data)
-   addChat(data)
-
-});
-});
 module.exports = app;
